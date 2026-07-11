@@ -53,7 +53,7 @@
   
   <div class="form-group">
     <label>اسم التطبيق:</label>
-    <input type="text" id="app-name" value="Facebook Premium Pro">
+    <input type="text" id="app-name" value="ZArchiver Pro">
   </div>
 
   <div class="form-group">
@@ -63,22 +63,22 @@
 
   <div class="form-group">
     <label>اسم المطور أو الشركة:</label>
-    <input type="text" id="app-dev" value="Meta Platforms, Inc.">
+    <input type="text" id="app-dev" value="ZDevs">
   </div>
 
   <div class="form-group">
     <label>إصدار التطبيق:</label>
-    <input type="text" id="app-version" value="v525.0.4.12">
+    <input type="text" id="app-version" value="v1.0.9">
   </div>
 
   <div class="form-group">
     <label>حجم الملف:</label>
-    <input type="text" id="app-size" value="128.4 MB">
+    <input type="text" id="app-size" value="4.2 MB">
   </div>
 
   <div class="form-group">
     <label>التوافق (نسخة الأندرويد):</label>
-    <input type="text" id="app-android" value="Android 8.0 or Higher">
+    <input type="text" id="app-android" value="Android 4.4 or Higher">
   </div>
 
   <div class="form-group">
@@ -88,12 +88,12 @@
 
   <div class="form-group">
     <label>إحصائيات التنزيل:</label>
-    <input type="text" id="app-downloads" value="5,000,000+ تحميل">
+    <input type="text" id="app-downloads" value="100,000,000+ تحميل">
   </div>
 
   <div class="form-group">
     <label>نوع الترخيص:</label>
-    <input type="text" id="app-license" value="مجاني (Premium Unlocked)">
+    <input type="text" id="app-license" value="مجاني بالكامل">
   </div>
 
   <div class="form-group">
@@ -103,15 +103,14 @@
 
   <div class="form-group">
     <label>رابط التطبيق على متجر Google Play:</label>
-    <input type="url" id="app-play-link" value="https://play.google.com/store/apps/details?id=com.facebook.katana">
+    <input type="url" id="app-play-link" value="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver">
   </div>
 
   <div class="form-group">
     <label>وصف التطبيق التفصيلي (يدعم HTML):</label>
-    <textarea id="app-desc"><p>تطبيق فيسبوك بريميوم المحسّن هو النسخة الأكثر تكاملاً واستقراراً لتجربة تواصل اجتماعي فريدة من نوعها.</p></textarea>
+    <textarea id="app-desc"><p>تطبيق إدارة الأرشيفات الأفضل للهواتف الذكية لفك وضغط الملفات بسهولة وسرعة.</p></textarea>
   </div>
 
-  <!-- ميزة رفع الصور مع محرك الضغط الذكي لمنع ثقل الكود -->
   <div class="form-group">
     <label>لقطات الشاشة (اختر الصور من هاتفك مباشرة):</label>
     <div class="file-input-wrapper">
@@ -128,7 +127,7 @@
 
   <div class="output-area" id="output-section">
     <div class="output-header">
-      <label style="color: #10b981; margin: 0;"><i class="fa-solid fa-circle-check"></i> تم إنشاء الكود بنجاح (مُحسّن ومضغوط)!</label>
+      <label style="color: #10b981; margin: 0;"><i class="fa-solid fa-circle-check"></i> تم إنشاء الكود بنجاح!</label>
       <button class="btn-copy" onclick="copyToClipboard()"><i class="fa-solid fa-copy"></i> نسخ الكود</button>
     </div>
     <pre><code id="generated-code"></code></pre>
@@ -143,7 +142,6 @@
     const thumbsContainer = document.getElementById('thumbs-container');
     const statusIndicator = document.getElementById('compress-status');
     
-    // تنظيف الحاوية السابقة وإبقاء مؤشر التحميل
     thumbsContainer.innerHTML = '';
     thumbsContainer.appendChild(statusIndicator);
     
@@ -157,7 +155,6 @@
         const compressedBase64 = await compressImageProcess(file);
         base64Screenshots.push(compressedBase64);
         
-        // عرض مصغر للصورة التي تم ضغطها
         const img = document.createElement('img');
         img.src = compressedBase64;
         img.className = 'thumb';
@@ -166,11 +163,9 @@
         console.error("خطأ في معالجة الصورة:", error);
       }
     }
-    
     statusIndicator.style.display = 'none';
   });
 
-  // محرك ذكي لضغط وصقل جودة الصور لتفادي مشكلة بطء التدوينة في بلوجر
   function compressImageProcess(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -182,20 +177,15 @@
           const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
-
-          // وضع حد أقصى للعرض (مثالي للهواتف لقطات الشاشة الطولية)
           const MAX_WIDTH = 480; 
           if (width > MAX_WIDTH) {
             height = Math.round((height * MAX_WIDTH) / width);
             width = MAX_WIDTH;
           }
-
           canvas.width = width;
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
-
-          // ضغط الصورة بصيغة JPEG بجودة 0.7 (توفر 90% من المساحة دون خسارة الوضوح)
           const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
           resolve(dataUrl);
         };
