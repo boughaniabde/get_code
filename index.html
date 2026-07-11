@@ -210,6 +210,7 @@
     const desc = document.getElementById('app-desc').value;
     const screenshotsString = base64Screenshots.join(',');
 
+    // تم إصلاح الـ Template هنا عبر منع المتصفح من قراءة وسم الإغلاق بشكل خاطئ
     const finalTemplate = `<!-- قسم بيانات التطبيق المخفي -->
 <div id="app-data" style="display:none;">
   <span class="app-name">${name}</span>
@@ -342,7 +343,7 @@
     const themeTrigger = document.getElementById("theme-toggle-trigger"); const preservedTheme = localStorage.getItem("premium-app-theme") || "light"; if (preservedTheme === "dark") { document.documentElement.setAttribute("data-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
     themeTrigger.addEventListener("click", function() { const targetTheme = document.documentElement.getAttribute("data-theme"); if (targetTheme === "dark") { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("premium-app-theme", "light"); themeTrigger.innerHTML = '<i class="fa-solid fa-moon"></i>'; } else { document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("premium-app-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; } });
   });
-</script>
+<\/script>
 `;
 
     document.getElementById('generated-code').innerText = finalTemplate;
