@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مولد صفحات تحميل تطبيقات بلوجر الاحترافية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 40px 20px; }
+    .container { max-width: 800px; margin: 0 auto; background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+    h1 { font-size: 1.8rem; text-align: center; margin-bottom: 30px; color: var(--primary); font-weight: 900; }
+    h1 i { margin-left: 10px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+    input[type="text"], input[type="url"], textarea {
+      width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; background: #f1f5f9; outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--primary); background: #fff; }
+    textarea { height: 120px; resize: vertical; }
+    .file-input-wrapper {
+      position: relative; border: 2px dashed var(--primary); padding: 20px; text-align: center; border-radius: 8px; background: rgba(59, 130, 246, 0.02); cursor: pointer;
+    }
+    .file-input-wrapper input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%;
+    }
+    .preview-thumbnails { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; align-items: center; }
+    .thumb { width: 70px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
+    .loading-status { font-size: 0.9rem; color: var(--primary); font-weight: bold; display: none; }
+    .btn-generate {
+      width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; border-radius: 8px; font-size: 1.2rem; font-weight: 700; cursor: pointer; margin-top: 20px;
+    }
+    .btn-generate:hover { background: #2563eb; }
+    .output-area { margin-top: 35px; display: none; }
+    .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .btn-copy { background: #10b981; color: white; border: none; padding: 6px 15px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+    .btn-copy:hover { background: #059669; }
+    pre { background: #0f172a; color: #f8fafc; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: monospace; direction: ltr; text-align: left; max-height: 400px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1><i class="fa-solid fa-laptop-code"></i> لوحة تحكم ومولد أكواد بلوجر</h1>
+  
+  <div class="form-group">
+    <label>اسم التطبيق:</label>
+    <input type="text" id="app-name" value="Facebook Premium Pro">
+  </div>
+
+  <div class="form-group">
+    <label>رابط أيقونة التطبيق (رابط صورة):</label>
+    <input type="url" id="app-icon" value="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200">
+  </div>
+
+  <div class="form-group">
+    <label>اسم المطور أو الشركة:</label>
+    <input type="text" id="app-dev" value="Meta Platforms, Inc.">
+  </div>
+
+  <div class="form-group">
+    <label>إصدار التطبيق:</label>
+    <input type="text" id="app-version" value="v525.0.4.12">
+  </div>
+
+  <div class="form-group">
+    <label>حجم الملف:</label>
+    <input type="text" id="app-size" value="128.4 MB">
+  </div>
+
+  <div class="form-group">
+    <label>التوافق (نسخة الأندرويد):</label>
+    <input type="text" id="app-android" value="Android 8.0 or Higher">
+  </div>
+
+  <div class="form-group">
+    <label>تاريخ التحديث:</label>
+    <input type="text" id="app-update" value="11 يوليو 2026">
+  </div>
+
+  <div class="form-group">
+    <label>إحصائيات التنزيل:</label>
+    <input type="text" id="app-downloads" value="5,000,000+ تحميل">
+  </div>
+
+  <div class="form-group">
+    <label>نوع الترخيص:</label>
+    <input type="text" id="app-license" value="مجاني (Premium Unlocked)">
+  </div>
+
+  <div class="form-group">
+    <label>رابط التحميل المباشر للـ APK:</label>
+    <input type="url" id="app-dl-link" value="https://example.com/download">
+  </div>
+
+  <div class="form-group">
+    <label>رابط التطبيق على متجر Google Play:</label>
+    <input type="url" id="app-play-link" value="https://play.google.com/store/apps/details?id=com.facebook.katana">
+  </div>
+
+  <div class="form-group">
+    <label>وصف التطبيق التفصيلي (يدعم HTML):</label>
+    <textarea id="app-desc"><p>تطبيق فيسبوك بريميوم المحسّن هو النسخة الأكثر تكاملاً واستقراراً لتجربة تواصل اجتماعي فريدة من نوعها.</p></textarea>
+  </div>
+
+  <!-- ميزة رفع الصور مع محرك الضغط الذكي لمنع ثقل الكود -->
+  <div class="form-group">
+    <label>لقطات الشاشة (اختر الصور من هاتفك مباشرة):</label>
+    <div class="file-input-wrapper">
+      <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px; display:block;"></i>
+      <span>اضغط هنا لاختيار أو تصوير لقطات الشاشة من الهاتف</span>
+      <input type="file" id="app-screenshots-files" accept="image/*" multiple>
+    </div>
+    <div class="preview-thumbnails" id="thumbs-container">
+      <span class="loading-status" id="compress-status"><i class="fa-solid fa-compact-disc fa-spin"></i> جاري ضغط وتحسين الصور لتناسب بلوجر...</span>
+    </div>
+  </div>
+
+  <button class="btn-generate" onclick="generateBloggerCode()"><i class="fa-solid fa-wand-magic-sparkles"></i> توليد الكود النهائي للموضوع</button>
+
+  <div class="output-area" id="output-section">
+    <div class="output-header">
+      <label style="color: #10b981; margin: 0;"><i class="fa-solid fa-circle-check"></i> تم إنشاء الكود بنجاح (مُحسّن ومضغوط)!</label>
+      <button class="btn-copy" onclick="copyToClipboard()"><i class="fa-solid fa-copy"></i> نسخ الكود</button>
+    </div>
+    <pre><code id="generated-code"></code></pre>
+  </div>
+</div>
+
+<script>
+  let base64Screenshots = [];
+
+  document.getElementById('app-screenshots-files').addEventListener('change', async function(e) {
+    const files = e.target.files;
+    const thumbsContainer = document.getElementById('thumbs-container');
+    const statusIndicator = document.getElementById('compress-status');
+    
+    // تنظيف الحاوية السابقة وإبقاء مؤشر التحميل
+    thumbsContainer.innerHTML = '';
+    thumbsContainer.appendChild(statusIndicator);
+    
+    if (files.length === 0) return;
+    statusIndicator.style.display = 'block';
+    base64Screenshots = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      try {
+        const compressedBase64 = await compressImageProcess(file);
+        base64Screenshots.push(compressedBase64);
+        
+        // عرض مصغر للصورة التي تم ضغطها
+        const img = document.createElement('img');
+        img.src = compressedBase64;
+        img.className = 'thumb';
+        thumbsContainer.appendChild(img);
+      } catch (error) {
+        console.error("خطأ في معالجة الصورة:", error);
+      }
+    }
+    
+    statusIndicator.style.display = 'none';
+  });
+
+  // محرك ذكي لضغط وصقل جودة الصور لتفادي مشكلة بطء التدوينة في بلوجر
+  function compressImageProcess(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(event) {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          // وضع حد أقصى للعرض (مثالي للهواتف لقطات الشاشة الطولية)
+          const MAX_WIDTH = 480; 
+          if (width > MAX_WIDTH) {
+            height = Math.round((height * MAX_WIDTH) / width);
+            width = MAX_WIDTH;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // ضغط الصورة بصيغة JPEG بجودة 0.7 (توفر 90% من المساحة دون خسارة الوضوح)
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          resolve(dataUrl);
+        };
+        img.onerror = reject;
+      };
+      reader.onerror = reject;
+    });
+  }
+
+  function generateBloggerCode() {
+    const name = document.getElementById('app-name').value;
+    const icon = document.getElementById('app-icon').value;
+    const dev = document.getElementById('app-dev').value;
+    const version = document.getElementById('app-version').value;
+    const size = document.getElementById('app-size').value;
+    const android = document.getElementById('app-android').value;
+    const update = document.getElementById('app-update').value;
+    const downloads = document.getElementById('app-downloads').value;
+    const license = document.getElementById('app-license').value;
+    const dlLink = document.getElementById('app-dl-link').value;
+    const playLink = document.getElementById('app-play-link').value;
+    const desc = document.getElementById('app-desc').value;
+    const screenshotsString = base64Screenshots.join(',');
+
+    const finalTemplate = `<!-- قسم بيانات التطبيق المخفي -->
+<div id="app-data" style="display:none;">
+  <span class="app-name">${name}</span>
+  <span class="app-icon">${icon}</span>
+  <span class="app-dev">${dev}</span>
+  <span class="app-version">${version}</span>
+  <span class="app-size">${size}</span>
+  <span class="app-android">${android}</span>
+  <span class="app-update">${update}</span>
+  <span class="app-downloads">${downloads}</span>
+  <span class="app-license">${license}</span>
+  <a class="download-link" href="${dlLink}"></a>
+  <a class="play-link" href="${playLink}"></a>
+  <span class="app-screenshots">${screenshotsString}</span>
+  <div class="app-description">${desc}</div>
+</div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --bg-main: #f1f5f9; --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); --glass-bg: rgba(255, 255, 255, 0.55); --glass-border: rgba(255, 255, 255, 0.5); --glass-sub: rgba(255, 255, 255, 0.7); --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #64748b; --color-accent: #3b82f6; --color-accent-rgb: 59, 130, 246; --color-accent-hover: #1d4ed8; --color-success: #10b981; --color-success-hover: #047857; --color-warning: #f59e0b; --shadow-sm: 0 2px 8px rgba(0,0,0,0.04); --shadow-md: 0 10px 30px -10px rgba(0,0,0,0.08); --shadow-lg: 0 20px 40px -15px rgba(0,0,0,0.12); --glass-blur: blur(16px); --radius-lg: 24px; --radius-md: 16px; --radius-sm: 12px; --font-cairo: 'Cairo', sans-serif;
+  }
+  [data-theme="dark"] {
+    --bg-main: #0b0f19; --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%); --glass-bg: rgba(15, 23, 42, 0.55); --glass-border: rgba(255, 255, 255, 0.05); --glass-sub: rgba(30, 41, 59, 0.7); --text-primary: #f8fafc; --text-secondary: #cbd5e1; --text-muted: #94a3b8; --color-accent: #3b82f6; --color-accent-hover: #60a5fa; --shadow-sm: 0 2px 8px rgba(0,0,0,0.2); --shadow-md: 0 10px 30px -10px rgba(0,0,0,0.4); --shadow-lg: 0 20px 40px -15px rgba(0,0,0,0.5); --glass-blur: blur(20px);
+  }
+  .premium-wrapper-engine { direction: rtl !important; text-align: right !important; box-sizing: border-box !important; font-family: var(--font-cairo) !important; width: 100% !important; max-width: 900px !important; margin: 0 auto !important; padding: 15px !important; }
+  .premium-wrapper-engine * { box-sizing: border-box !important; transition: background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .main-glass-board { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 40px; position: relative; overflow: hidden; }
+  .theme-controller-hub { position: absolute; top: 30px; left: 30px; z-index: 10; }
+  .action-circle-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--glass-sub); border: 1px solid var(--glass-border); color: var(--text-primary); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem; box-shadow: var(--shadow-sm); }
+  .action-circle-btn:hover { transform: rotate(30deg) scale(1.08); color: var(--color-accent); box-shadow: var(--shadow-md); }
+  .app-identity-identity-hub { display: flex; align-items: center; gap: 28px; margin-bottom: 35px; position: relative; z-index: 1; }
+  .app-prime-frame { position: relative; flex-shrink: 0; }
+  .app-prime-frame::after { content: ''; position: absolute; inset: -4px; border-radius: 28px; border: 2px dashed var(--color-accent); opacity: 0.4; animation: spinFrame 20s linear infinite; }
+  @keyframes spinFrame { 100% { transform: rotate(360deg); } }
+  .app-master-icon { width: 120px; height: 120px; border-radius: 24px; object-fit: cover; box-shadow: var(--shadow-md); border: 2px solid var(--glass-border); display: block; }
+  .app-details-block { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .app-meta-title { font-size: 2rem; font-weight: 800; color: var(--text-primary); line-height: 1.25; letter-spacing: -0.5px; }
+  .app-meta-developer { font-size: 1rem; color: var(--text-secondary); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .app-meta-developer i { color: var(--color-accent); font-size: 0.85rem; }
+  .star-ratings-rack { display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+  .star-ratings-rack i { color: var(--color-warning); font-size: 1rem; }
+  .star-ratings-rack .rating-num { margin-right: 8px; font-size: 0.9rem; font-weight: 700; color: var(--text-primary); background: var(--glass-sub); padding: 2px 8px; border-radius: 20px; border: 1px solid var(--glass-border); }
+  .premium-ad-container-spot { width: 100%; margin: 30px 0; background: rgba(var(--color-accent-rgb), 0.03); border: 2px dashed var(--glass-border); border-radius: var(--radius-md); padding: 20px; text-align: center; position: relative; overflow: hidden; }
+  .premium-ad-container-spot::before { content: 'ADVERTISEMENT'; position: absolute; top: 4px; right: 8px; font-size: 0.65rem; font-weight: 800; color: var(--text-muted); letter-spacing: 1px; }
+  .ad-fallback-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; min-height: 90px; }
+  .ad-fallback-placeholder i { font-size: 1.5rem; color: var(--color-accent); opacity: 0.7; }
+  .specs-matrix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 35px; }
+  .matrix-cell { background: var(--glass-sub); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: center; gap: 18px; box-shadow: var(--shadow-sm); }
+  .matrix-cell:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(var(--color-accent-rgb), 0.3); }
+  .matrix-icon-box { width: 52px; height: 52px; background: rgba(var(--color-accent-rgb), 0.1); color: var(--color-accent); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .matrix-content-box { display: flex; flex-direction: column; gap: 2px; }
+  .matrix-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 700; }
+  .matrix-value { font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
+  .block-section-heading { font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--glass-border); padding-bottom: 10px; }
+  .block-section-heading i { color: var(--color-accent); background: rgba(var(--color-accent-rgb), 0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1rem; }
+  .narrative-description-container { font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary); text-align: justify; margin-bottom: 40px; }
+  .gallery-viewport-flow { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 20px; margin-bottom: 40px; scrollbar-width: thin; scrollbar-color: var(--glass-border) transparent; cursor: grab; }
+  .gallery-viewport-flow::-webkit-scrollbar { height: 8px; }
+  .gallery-viewport-flow::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+  .gallery-image-node { height: 280px; border-radius: var(--radius-md); object-fit: cover; box-shadow: var(--shadow-md); border: 2px solid var(--glass-border); flex-shrink: 0; user-select: none; -webkit-user-drag: none; }
+  .gallery-image-node:hover { transform: scale(1.03); border-color: var(--color-accent); }
+  .download-terminal-station { background: var(--glass-sub); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 35px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; box-shadow: var(--shadow-md); margin-top: 20px; }
+  .chrono-cycler-hub { position: relative; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; opacity: 1; transition: opacity 0.4s ease, transform 0.4s ease; }
+  .chrono-cycler-hub svg { width: 100px; height: 100px; transform: rotate(-90deg); }
+  .chrono-cycler-hub circle { fill: none; stroke-width: 8; stroke-linecap: round; }
+  .chrono-track { stroke: var(--glass-border); }
+  .chrono-fill { stroke: var(--color-accent); stroke-dasharray: 283; stroke-dashoffset: 0; }
+  .chrono-counter-digit { position: absolute; font-size: 1.85rem; font-weight: 900; color: var(--text-primary); }
+  .chrono-status-tip { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; gap: 6px; }
+  .action-buttons-deployment-zone { display: none; width: 100%; flex-direction: column; gap: 16px; animation: fadeInButtons 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes fadeInButtons { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  .mega-fluid-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 24px; border-radius: var(--radius-sm); font-size: 1.15rem; font-weight: 800; text-decoration: none; color: #ffffff !important; box-shadow: var(--shadow-sm); cursor: pointer; position: relative; overflow: hidden; }
+  .mega-fluid-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); transform: skewX(-25deg); animation: shineEffect 3.5s infinite linear; }
+  @keyframes shineEffect { 0% { left: -100%; } 100% { left: 200%; } }
+  .mega-fluid-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .btn-type-direct-apk { background: var(--color-accent); }
+  .btn-type-direct-apk:hover { background: var(--color-accent-hover); }
+  .btn-type-google-play { background: var(--color-success); }
+  .btn-type-google-play:hover { background: var(--color-success-hover); }
+  .security-badge-footer { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; font-size: 0.85rem; color: var(--color-success); font-weight: 700; text-align: center; }
+  @media (max-width: 768px) { .main-glass-board { padding: 25px 20px; } .app-identity-identity-hub { flex-direction: column; text-align: center; gap: 18px; } .specs-matrix-grid { grid-template-columns: 1fr; gap: 12px; } .theme-controller-hub { top: 15px; left: 15px; } .action-circle-btn { width: 42px; height: 42px; font-size: 1.1rem; } .app-meta-title { font-size: 1.6rem; } .gallery-image-node { height: 220px; } }
+</style>
+
+<div class="premium-wrapper-engine">
+  <div class="main-glass-board">
+    <div class="theme-controller-hub">
+      <button class="action-circle-btn" id="theme-toggle-trigger" aria-label="Switch Design Theme"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <header class="app-identity-identity-hub">
+      <div class="app-prime-frame"><img src="" alt="Application Badge Icon" class="app-master-icon" id="live-icon"></div>
+      <div class="app-details-block">
+        <h1 class="app-meta-title" id="live-name">Loading...</h1>
+        <div class="app-meta-developer"><i class="fa-solid fa-circle-check"></i><span id="live-dev">Loading...</span></div>
+        <div class="star-ratings-rack"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="rating-num">5.0</span></div>
+      </div>
+    </header>
+    <div class="premium-ad-container-spot"><div class="ad-fallback-placeholder"><i class="fa-solid fa-rectangle-ad"></i><span>مساحة إعلانية علوية خاضعة لشروط النشر الخاصة بمدونتك</span></div></div>
+    <section class="specs-matrix-grid">
+      <div class="matrix-cell"><div class="matrix-icon-box"><i class="fa-solid fa-weight-hanging"></i></div><div class="matrix-content-box"><span class="matrix-label">حجم ملف الـ APK</span><span class="matrix-value" id="live-size">-</span></div></div>
+      <div class="matrix-cell"><div class="matrix-icon-box"><i class="fa-solid fa-code-merge"></i></div><div class="matrix-content-box"><span class="matrix-label">الإصدار الحالي المتوفر</span><span class="matrix-value" id="live-version">-</span></div></div>
+      <div class="matrix-cell"><div class="matrix-icon-box"><i class="fa-brands fa-android"></i></div><div class="matrix-content-box"><span class="matrix-label">نظام التشغيل المطلوب</span><span class="matrix-value" id="live-android">-</span></div></div>
+      <div class="matrix-cell"><div class="matrix-icon-box"><i class="fa-solid fa-clock-rotate-left"></i></div><div class="matrix-content-box"><span class="matrix-label">تاريخ آخر تحديث</span><span class="matrix-value" id="live-update">-</span></div></div>
+      <div class="matrix-cell"><div class="matrix-icon-box"><i class="fa-solid fa-cloud-arrow-down"></i></div><div class="matrix-content-box"><span class="matrix-label">إحصائيات التنزيل</span><span class="matrix-value" id="live-downloads">-</span></div></div>
+      <div class="matrix-cell"><div class="matrix-icon-box"><i class="fa-solid fa-key"></i></div><div class="matrix-content-box"><span class="matrix-label">ترخيص التطبيق</span><span class="matrix-value" id="live-license">-</span></div></div>
+    </section>
+    <section><h2 class="block-section-heading"><i class="fa-solid fa-align-right"></i> حول هذا التطبيق ووظائفه</h2><div class="narrative-description-container" id="live-desc">جاري جلب وقراءة بيانات الوصف التفصيلي للتطبيق...</div></section>
+    <section><h2 class="block-section-heading"><i class="fa-solid fa-photo-film"></i> لقطات شاشة من داخل التطبيق</h2><div class="gallery-viewport-flow" id="live-screenshots-gallery"></div></section>
+    <div class="premium-ad-container-spot"><div class="ad-fallback-placeholder"><i class="fa-solid fa-rectangle-ad"></i><span>مساحة إعلانية سفلية (مثالية لإعلانات أدسنس المتجاوبة)</span></div></div>
+    <section><h2 class="block-section-heading"><i class="fa-solid fa-shield-halved"></i> مركز التحميل الآمن والمباشر</h2><div class="download-terminal-station" id="target-terminal-trigger"><div class="chrono-cycler-hub" id="live-timer-node"><svg><circle class="chrono-track" cx="50" cy="50" r="45"></circle><circle class="chrono-fill" id="live-chrono-bar" cx="50" cy="50" r="45"></circle></svg><div class="chrono-counter-digit" id="live-timer-text">10</div></div><div class="chrono-status-tip" id="live-timer-status"><i class="fa-solid fa-scroll-pointer"></i><span>انزل إلى هنا لتجهيز روابط التحميل المباشرة...</span></div><div class="action-buttons-deployment-zone" id="live-buttons-pack"><a href="#" class="mega-fluid-btn btn-type-direct-apk" id="live-link-apk" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-down"></i> تحميل تطبيق APK برابط آمن ومباشر</a><a href="#" class="mega-fluid-btn btn-type-google-play" id="live-link-play" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> تنزيل المصدر من متجر Google Play</a></div><div class="security-badge-footer"><i class="fa-solid fa-circle-shield"></i><span>الملف تم فحصه عبر سيرفراتنا وهو آمن 100% ومضاد للفيروسات والبرمجيات الخبيثة.</span></div></div></section>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const dataOrigin = document.getElementById("app-data"); if (!dataOrigin) return;
+    const rawData = {
+      name: dataOrigin.querySelector(".app-name")?.innerText || "Unknown Application", icon: dataOrigin.querySelector(".app-icon")?.innerText || "", dev: dataOrigin.querySelector(".app-dev")?.innerText || "Third-Party Developer", version: dataOrigin.querySelector(".app-version")?.innerText || "N/A", size: dataOrigin.querySelector(".app-size")?.innerText || "Undefined Size", android: dataOrigin.querySelector(".app-android")?.innerText || "Android 5.0+", update: dataOrigin.querySelector(".app-update")?.innerText || "Recent Date", downloads: dataOrigin.querySelector(".app-downloads")?.innerText || "100,000+", license: dataOrigin.querySelector(".app-license")?.innerText || "Free / Open Source", apkHref: dataOrigin.querySelector(".download-link")?.getAttribute("href") || "#", playHref: dataOrigin.querySelector(".play-link")?.getAttribute("href") || "#", descHtml: dataOrigin.querySelector(".app-description")?.innerHTML || "No description provided.", screenshots: dataOrigin.querySelector(".app-screenshots")?.innerText || ""
+    };
+    document.getElementById("live-name").innerText = rawData.name; document.getElementById("live-icon").setAttribute("src", rawData.icon); document.getElementById("live-dev").innerText = rawData.dev; document.getElementById("live-size").innerText = rawData.size; document.getElementById("live-version").innerText = rawData.version; document.getElementById("live-android").innerText = rawData.android; document.getElementById("live-update").innerText = rawData.update; document.getElementById("live-downloads").innerText = rawData.downloads; document.getElementById("live-license").innerText = rawData.license; document.getElementById("live-desc").innerHTML = rawData.descHtml; document.getElementById("live-link-apk").setAttribute("href", rawData.apkHref); document.getElementById("live-link-play").setAttribute("href", rawData.playHref);
+    const galleryContainer = document.getElementById("live-screenshots-gallery"); if (rawData.screenshots.trim()) { const urlArray = rawData.screenshots.split(","); urlArray.forEach(url => { if (url.trim()) { const imgNode = document.createElement("img"); imgNode.src = url.trim(); imgNode.className = "gallery-image-node"; galleryContainer.appendChild(imgNode); } }); }
+    let isDown = false; let startX; let scrollLeft; galleryContainer.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - galleryContainer.offsetLeft; scrollLeft = galleryContainer.scrollLeft; }); galleryContainer.addEventListener('mouseleave', () => { isDown = false; }); galleryContainer.addEventListener('mouseup', () => { isDown = false; }); galleryContainer.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - galleryContainer.offsetLeft; const walk = (x - startX) * 2; galleryContainer.scrollLeft = scrollLeft - walk; });
+    let timeRemaining = 10; const totalDuration = 10; const perimeter = 283; const timerTextNode = document.getElementById("live-timer-text"); const chronoBarNode = document.getElementById("live-chrono-bar"); const timerMasterBox = document.getElementById("live-timer-node"); const timerStatusNode = document.getElementById("live-timer-status"); const buttonsDeploymentZone = document.getElementById("live-buttons-pack"); const terminalTriggerZone = document.getElementById("target-terminal-trigger"); let countdownInterval = null; let hasStarted = false;
+    function startPremiumCountdown() { if (hasStarted) return; hasStarted = true; timerStatusNode.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري فحص وتجهيز روابط التحميل الآمنة الآن...</span>'; countdownInterval = setInterval(() => { timeRemaining--; timerTextNode.innerText = timeRemaining; let offset = (perimeter / totalDuration) * (totalDuration - timeRemaining); chronoBarNode.style.strokeDashoffset = offset; if (timeRemaining <= 0) { clearInterval(countdownInterval); timerMasterBox.style.opacity = "0"; timerStatusNode.style.display = "none"; setTimeout(() => { timerMasterBox.style.display = "none"; buttonsDeploymentZone.style.display = "flex"; }, 300); } }, 1000); }
+    const observerOptions = { root: null, threshold: 0.6 }; const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { startPremiumCountdown(); observer.unobserve(entry.target); } }); }, observerOptions); observer.observe(terminalTriggerZone);
+    const themeTrigger = document.getElementById("theme-toggle-trigger"); const preservedTheme = localStorage.getItem("premium-app-theme") || "light"; if (preservedTheme === "dark") { document.documentElement.setAttribute("data-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
+    themeTrigger.addEventListener("click", function() { const targetTheme = document.documentElement.getAttribute("data-theme"); if (targetTheme === "dark") { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("premium-app-theme", "light"); themeTrigger.innerHTML = '<i class="fa-solid fa-moon"></i>'; } else { document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("premium-app-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; } });
+  });
+</script>
+`;
+
+    document.getElementById('generated-code').innerText = finalTemplate;
+    document.getElementById('output-section').style.display = 'block';
+    document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function copyToClipboard() {
+    const codeText = document.getElementById('generated-code').innerText;
+    navigator.clipboard.writeText(codeText).then(() => {
+      alert('تم نسخ الكود الاحترافي بنجاح! يمكنك الآن لصقه مباشرة في بلوجر عبر وضع عرض HTML.');
+    });
+  }
+</script>
+
+</body>
+</html>
