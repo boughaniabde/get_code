@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مولد صفحات تحميل تطبيقات بلوجر الاحترافية</title>
+  <title>مولد صفحات تحميل تطبيقات بلوجر الاحترافية المطور</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -21,6 +21,7 @@
     h1 i { margin-left: 10px; }
     .form-group { margin-bottom: 20px; }
     label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+    .tip-text { font-size: 0.8rem; color: #64748b; margin-top: 4px; font-weight: 400; }
     input[type="text"], input[type="url"], textarea {
       width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; background: #f1f5f9; outline: none;
     }
@@ -40,7 +41,7 @@
 <body>
 
 <div class="container">
-  <h1><i class="fa-solid fa-laptop-code"></i> لوحة تحكم ومولد أكواد بلوجر</h1>
+  <h1><i class="fa-solid fa-laptop-code"></i> لوحة تحكم ومولد أكواد بلوجر (النسخة الذكية)</h1>
   
   <div class="form-group">
     <label>اسم التطبيق:</label>
@@ -88,8 +89,9 @@
   </div>
 
   <div class="form-group">
-    <label>رابط التحميل المباشر للـ APK:</label>
-    <input type="url" id="app-dl-link" value="https://example.com/download">
+    <label>رابط صفحة التحميل (يدعم الاستخراج من MediaFire, Google Drive, GitHub):</label>
+    <input type="url" id="app-dl-link" value="https://www.mediafire.com/file/example/zarchiver.apk/file">
+    <div class="tip-text">* حط الرابط العادي والصفحة غتستخرجو أوتوماتيك للزائر بلا ما يخرج من مدونتك.</div>
   </div>
 
   <div class="form-group">
@@ -247,25 +249,124 @@
     <section><h2 class="block-section-heading"><i class="fa-solid fa-align-right"></i> حول هذا التطبيق ووظائفه</h2><div class="narrative-description-container" id="live-desc">جاري جلب وقراءة بيانات الوصف التفصيلي للتطبيق...</div></section>
     <section><h2 class="block-section-heading"><i class="fa-solid fa-photo-film"></i> لقطات شاشة من داخل التطبيق</h2><div class="gallery-viewport-flow" id="live-screenshots-gallery"></div></section>
     <div class="premium-ad-container-spot"><div class="ad-fallback-placeholder"><i class="fa-solid fa-rectangle-ad"></i><span>مساحة إعلانية سفلية (مثالية لإعلانات أدسنس المتجاوبة)</span></div></div>
-    <section><h2 class="block-section-heading"><i class="fa-solid fa-shield-halved"></i> مركز التحميل الآمن والمباشر</h2><div class="download-terminal-station" id="target-terminal-trigger"><div class="chrono-cycler-hub" id="live-timer-node"><svg><circle class="chrono-track" cx="50" cy="50" r="45"></circle><circle class="chrono-fill" id="live-chrono-bar" cx="50" cy="50" r="45"></circle></svg><div class="chrono-counter-digit" id="live-timer-text">10</div></div><div class="chrono-status-tip" id="live-timer-status"><i class="fa-solid fa-scroll-pointer"></i><span>انزل إلى هنا لتجهيز روابط التحميل المباشرة...</span></div><div class="action-buttons-deployment-zone" id="live-buttons-pack"><a href="#" class="mega-fluid-btn btn-type-direct-apk" id="live-link-apk" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-down"></i> تحميل تطبيق APK برابط آمن ومباشر</a><a href="#" class="mega-fluid-btn btn-type-google-play" id="live-link-play" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> تنزيل المصدر من متجر Google Play</a></div><div class="security-badge-footer"><i class="fa-solid fa-circle-shield"></i><span>الملف تم فحصه عبر سيرفراتنا وهو آمن 100% ومضاد للفيروسات والبرمجيات الخبيثة.</span></div></div></section>
+    <section><h2 class="block-section-heading"><i class="fa-solid fa-shield-halved"></i> مركز التحميل الآمن والمباشر</h2><div class="download-terminal-station" id="target-terminal-trigger"><div class="chrono-cycler-hub" id="live-timer-node"><svg><circle class="chrono-track" cx="50" cy="50" r="45"></circle><circle class="chrono-fill" id="live-chrono-bar" cx="50" cy="50" r="45"></circle></svg><div class="chrono-counter-digit" id="live-timer-text">10</div></div><div class="chrono-status-tip" id="live-timer-status"><i class="fa-solid fa-scroll-pointer"></i><span id="extraction-status-text">انزل إلى هنا لتجهيز روابط التحميل المباشرة...</span></div><div class="action-buttons-deployment-zone" id="live-buttons-pack"><a href="#" class="mega-fluid-btn btn-type-direct-apk" id="live-link-apk" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-down"></i> جاري فحص الرابط المباشر...</a><a href="#" class="mega-fluid-btn btn-type-google-play" id="live-link-play" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> تنزيل المصدر من متجر Google Play</a></div><div class="security-badge-footer"><i class="fa-solid fa-circle-shield"></i><span>الملف تم فحصه عبر سيرفراتنا وهو آمن 100% ومضاد للفيروسات والبرمجيات الخبيثة.</span></div></div></section>
   </div>
 </div>
 
 <script>
+  let finalDirectLink = "#"; // سيتم تعبئته برابط التحميل المباشر النهائي
+
   document.addEventListener("DOMContentLoaded", function() {
     const dataOrigin = document.getElementById("app-data"); if (!dataOrigin) return;
     const rawData = {
       name: dataOrigin.querySelector(".app-name")?.innerText || "Unknown Application", icon: dataOrigin.querySelector(".app-icon")?.innerText || "", dev: dataOrigin.querySelector(".app-dev")?.innerText || "Third-Party Developer", version: dataOrigin.querySelector(".app-version")?.innerText || "N/A", size: dataOrigin.querySelector(".app-size")?.innerText || "Undefined Size", android: dataOrigin.querySelector(".app-android")?.innerText || "Android 5.0+", update: dataOrigin.querySelector(".app-update")?.innerText || "Recent Date", downloads: dataOrigin.querySelector(".app-downloads")?.innerText || "100,000+", license: dataOrigin.querySelector(".app-license")?.innerText || "Free / Open Source", apkHref: dataOrigin.querySelector(".download-link")?.getAttribute("href") || "#", playHref: dataOrigin.querySelector(".play-link")?.getAttribute("href") || "#", descHtml: dataOrigin.querySelector(".app-description")?.innerHTML || "No description provided.", screenshots: dataOrigin.querySelector(".app-screenshots")?.innerText || ""
     };
-    document.getElementById("live-name").innerText = rawData.name; document.getElementById("live-icon").setAttribute("src", rawData.icon); document.getElementById("live-dev").innerText = rawData.dev; document.getElementById("live-size").innerText = rawData.size; document.getElementById("live-version").innerText = rawData.version; document.getElementById("live-android").innerText = rawData.android; document.getElementById("live-update").innerText = rawData.update; document.getElementById("live-downloads").innerText = rawData.downloads; document.getElementById("live-license").innerText = rawData.license; document.getElementById("live-desc").innerHTML = rawData.descHtml; document.getElementById("live-link-apk").setAttribute("href", rawData.apkHref); document.getElementById("live-link-play").setAttribute("href", rawData.playHref);
+    document.getElementById("live-name").innerText = rawData.name; document.getElementById("live-icon").setAttribute("src", rawData.icon); document.getElementById("live-dev").innerText = rawData.dev; document.getElementById("live-size").innerText = rawData.size; document.getElementById("live-version").innerText = rawData.version; document.getElementById("live-android").innerText = rawData.android; document.getElementById("live-update").innerText = rawData.update; document.getElementById("live-downloads").innerText = rawData.downloads; document.getElementById("live-license").innerText = rawData.license; document.getElementById("live-desc").innerHTML = rawData.descHtml; document.getElementById("live-link-play").setAttribute("href", rawData.playHref);
     const galleryContainer = document.getElementById("live-screenshots-gallery"); if (rawData.screenshots.trim()) { const urlArray = rawData.screenshots.split(","); urlArray.forEach(url => { if (url.trim()) { const imgNode = document.createElement("img"); imgNode.src = url.trim(); imgNode.className = "gallery-image-node"; galleryContainer.appendChild(imgNode); } }); }
     let isDown = false; let startX; let scrollLeft; galleryContainer.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - galleryContainer.offsetLeft; scrollLeft = galleryContainer.scrollLeft; }); galleryContainer.addEventListener('mouseleave', () => { isDown = false; }); galleryContainer.addEventListener('mouseup', () => { isDown = false; }); galleryContainer.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - galleryContainer.offsetLeft; const walk = (x - startX) * 2; galleryContainer.scrollLeft = scrollLeft - walk; });
-    let timeRemaining = 10; const totalDuration = 10; const perimeter = 283; const timerTextNode = document.getElementById("live-timer-text"); const chronoBarNode = document.getElementById("live-chrono-bar"); const timerMasterBox = document.getElementById("live-timer-node"); const timerStatusNode = document.getElementById("live-timer-status"); const buttonsDeploymentZone = document.getElementById("live-buttons-pack"); const terminalTriggerZone = document.getElementById("target-terminal-trigger"); let countdownInterval = null; let hasStarted = false;
-    function startPremiumCountdown() { if (hasStarted) return; hasStarted = true; timerStatusNode.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري فحص وتجهيز روابط التحميل الآمنة الآن...</span>'; countdownInterval = setInterval(() => { timeRemaining--; timerTextNode.innerText = timeRemaining; let offset = (perimeter / totalDuration) * (totalDuration - timeRemaining); chronoBarNode.style.strokeDashoffset = offset; if (timeRemaining <= 0) { clearInterval(countdownInterval); timerMasterBox.style.opacity = "0"; timerStatusNode.style.display = "none"; setTimeout(() => { timerMasterBox.style.display = "none"; buttonsDeploymentZone.style.display = "flex"; }, 300); } }, 1000); }
-    const observerOptions = { root: null, threshold: 0.6 }; const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { startPremiumCountdown(); observer.unobserve(entry.target); } }); }, observerOptions); observer.observe(terminalTriggerZone);
+    
+    // تشغيل مستخرج الروابط الذكي
+    parseAndExtractLink(rawData.apkHref);
+
     const themeTrigger = document.getElementById("theme-toggle-trigger"); const preservedTheme = localStorage.getItem("premium-app-theme") || "light"; if (preservedTheme === "dark") { document.documentElement.setAttribute("data-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
     themeTrigger.addEventListener("click", function() { const targetTheme = document.documentElement.getAttribute("data-theme"); if (targetTheme === "dark") { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("premium-app-theme", "light"); themeTrigger.innerHTML = '<i class="fa-solid fa-moon"></i>'; } else { document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("premium-app-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; } });
   });
+
+  // دالة فحص واستخراج الرابط التلقائي بناءً على المنصة
+  function parseAndExtractLink(url) {
+    const btnText = document.getElementById('live-link-apk');
+    const statusText = document.getElementById('extraction-status-text');
+
+    // 1. Google Drive
+    if (url.includes('drive.google.com')) {
+      let fileId = '';
+      if (url.includes('/d/')) { fileId = url.split('/d/')[1].split('/')[0]; } 
+      else if (url.includes('id=')) { fileId = url.split('id=')[1].split('&')[0]; }
+      if (fileId) {
+        finalDirectLink = \`https://docs.google.com/uc?export=download&id=\${fileId}\`;
+        btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من Google Drive مباشر';
+      } else { finalDirectLink = url; btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل ملف APK'; }
+      initCountdownTrigger();
+    } 
+    // 2. GitHub
+    else if (url.includes('github.com')) {
+      finalDirectLink = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+      btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من GitHub مباشر';
+      initCountdownTrigger();
+    } 
+    // 3. MediaFire
+    else if (url.includes('mediafire.com')) {
+      statusText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري فحص بروتوكول MediaFire...</span>';
+      const proxyUrl = 'https://api.allorigins.win/get?url=';
+      
+      fetch(proxyUrl + encodeURIComponent(url))
+        .then(res => res.json())
+        .then(data => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data.contents, 'text/html');
+          const downloadBtn = doc.getElementById('downloadButton');
+          if (downloadBtn) {
+            finalDirectLink = downloadBtn.getAttribute('href');
+            btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من MediaFire مباشر';
+          } else {
+            finalDirectLink = url;
+            btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> انتقال إلى صفحة MediaFire';
+          }
+          initCountdownTrigger();
+        })
+        .catch(err => {
+          finalDirectLink = url;
+          btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> انتقال إلى صفحة MediaFire';
+          initCountdownTrigger();
+        });
+    } 
+    // 4. أي رابط مباشر آخر
+    else {
+      finalDirectLink = url;
+      btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل تطبيق APK برابط مباشر';
+      initCountdownTrigger();
+    }
+  }
+
+  // تفعيل العداد التنازلي عند الظهور في الشاشة بعد انتهاء الاستخراج
+  function initCountdownTrigger() {
+    let timeRemaining = 10; const totalDuration = 10; const perimeter = 283; 
+    const timerTextNode = document.getElementById("live-timer-text"); 
+    const chronoBarNode = document.getElementById("live-chrono-bar"); 
+    const timerMasterBox = document.getElementById("live-timer-node"); 
+    const timerStatusNode = document.getElementById("live-timer-status"); 
+    const buttonsDeploymentZone = document.getElementById("live-buttons-pack"); 
+    const terminalTriggerZone = document.getElementById("target-terminal-trigger"); 
+    let countdownInterval = null; let hasStarted = false;
+
+    timerStatusNode.innerHTML = '<i class="fa-solid fa-scroll-pointer"></i> <span>انزل إلى هنا لتجهيز روابط التحميل المباشرة...</span>';
+
+    function startPremiumCountdown() { 
+      if (hasStarted) return; hasStarted = true; 
+      timerStatusNode.innerHTML = '<i class="fa-solid fa-shield-halved fa-spin"></i> <span>جاري تحضير رابط التحميل الآمن الآن...</span>'; 
+      countdownInterval = setInterval(() => { 
+        timeRemaining--; timerTextNode.innerText = timeRemaining; 
+        let offset = (perimeter / totalDuration) * (totalDuration - timeRemaining); 
+        chronoBarNode.style.strokeDashoffset = offset; 
+        if (timeRemaining <= 0) { 
+          clearInterval(countdownInterval); 
+          timerMasterBox.style.opacity = "0"; 
+          timerStatusNode.style.display = "none"; 
+          setTimeout(() => { 
+            timerMasterBox.style.display = "none"; 
+            document.getElementById("live-link-apk").setAttribute("href", finalDirectLink);
+            buttonsDeploymentZone.style.display = "flex"; 
+          }, 300); 
+        } 
+      }, 1000); 
+    }
+
+    const observerOptions = { root: null, threshold: 0.6 }; 
+    const observer = new IntersectionObserver((entries, observer) => { 
+      entries.forEach(entry => { if (entry.isIntersecting) { startPremiumCountdown(); observer.unobserve(entry.target); } }); 
+    }, observerOptions); 
+    observer.observe(terminalTriggerZone);
+  }
 <\/script>
 `;
 
