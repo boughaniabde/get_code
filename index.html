@@ -3,17 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مولد صفحات تحميل تطبيقات بلوجر الاحترافية المطور</title>
+  <title>مولد صفحات تحميل تطبيقات بلوجر الذكي مع الرفع التلقائي</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --primary: #3b82f6;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --border: #e2e8f0;
-    }
+    :root { --primary: #3b82f6; --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --border: #e2e8f0; }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
     body { background: var(--bg); color: var(--text); padding: 40px 20px; }
     .container { max-width: 800px; margin: 0 auto; background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
@@ -27,6 +21,15 @@
     }
     input:focus, textarea:focus { border-color: var(--primary); background: #fff; }
     textarea { height: 120px; resize: vertical; }
+    
+    /* ستايل زر رفع الملفات */
+    .upload-zone {
+      border: 2px dashed var(--primary); background: #eff6ff; padding: 20px; border-radius: 8px; text-align: center; cursor: pointer; position: relative;
+    }
+    .upload-zone:hover { background: #dbeafe; }
+    .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-status { font-size: 0.85rem; color: #10b981; margin-top: 8px; font-weight: 700; display: none; }
+
     .btn-generate {
       width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; border-radius: 8px; font-size: 1.2rem; font-weight: 700; cursor: pointer; margin-top: 20px;
     }
@@ -41,20 +44,21 @@
 <body>
 
 <div class="container">
-  <h1><i class="fa-solid fa-laptop-code"></i> لوحة تحكم ومولد أكواد بلوجر (النسخة الذكية)</h1>
+  <h1><i class="fa-solid fa-cloud-arrow-up"></i> لوحة المولد الذكي (مع الرفع التلقائي للصور)</h1>
   
+  <!-- حقول البيانات العادية -->
   <div class="form-group">
     <label>اسم التطبيق:</label>
     <input type="text" id="app-name" value="ZArchiver Pro">
   </div>
 
   <div class="form-group">
-    <label>رابط أيقونة التطبيق (ضع رابط الصورة المباشر هنا):</label>
+    <label>رابط أيقونة التطبيق:</label>
     <input type="url" id="app-icon" value="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200">
   </div>
 
   <div class="form-group">
-    <label>اسم المطور أو الشركة:</label>
+    <label>اسم المطور:</label>
     <input type="text" id="app-dev" value="ZDevs">
   </div>
 
@@ -69,7 +73,7 @@
   </div>
 
   <div class="form-group">
-    <label>التوافق (نسخة الأندرويد):</label>
+    <label>التوافق:</label>
     <input type="text" id="app-android" value="Android 4.4 or Higher">
   </div>
 
@@ -89,24 +93,31 @@
   </div>
 
   <div class="form-group">
-    <label>رابط صفحة التحميل (يدعم الاستخراج من MediaFire, Google Drive, GitHub):</label>
+    <label>رابط صفحة التحميل (MediaFire, Drive, GitHub):</label>
     <input type="url" id="app-dl-link" value="https://www.mediafire.com/file/example/zarchiver.apk/file">
-    <div class="tip-text">* حط الرابط العادي والصفحة غتستخرجو أوتوماتيك للزائر بلا ما يخرج من مدونتك.</div>
   </div>
 
   <div class="form-group">
-    <label>رابط التطبيق على متجر Google Play:</label>
+    <label>رابط Google Play:</label>
     <input type="url" id="app-play-link" value="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver">
   </div>
 
   <div class="form-group">
-    <label>وصف التطبيق التفصيلي (يدعم HTML):</label>
+    <label>وصف التطبيق التفصيلي:</label>
     <textarea id="app-desc"><p>تطبيق إدارة الأرشيفات الأفضل للهواتف الذكية لفك وضغط الملفات بسهولة وسرعة.</p></textarea>
   </div>
 
+  <!-- قسم الرفع التلقائي الجديد -->
   <div class="form-group">
-    <label>روابط لقطات الشاشة (أدخل روابط الصور مباشرة وافصل بين كل رابط ورابط بفاصلة ,):</label>
-    <textarea id="app-screenshots-urls" placeholder="https://site.com/img1.jpg, https://site.com/img2.jpg"></textarea>
+    <label>لقطات الشاشة (ارفعهوم من جهازك مباشرة):</label>
+    <div class="upload-zone">
+      <i class="fa-solid fa-images" style="font-size: 2rem; color: var(--primary); margin-bottom: 8px;"></i>
+      <p>اضغط هنا لاختيار الصور من جهازك وسنقوم برفعها تلقائياً</p>
+      <input type="file" id="screenshot-uploader" multiple accept="image/*" onchange="uploadImagesToImgbb(this)">
+    </div>
+    <div class="upload-status" id="upload-status-text"></div>
+    <!-- هاد الخانة غتعمر تلقائياً بالروابط المباشرة وممكن تعدل عليها -->
+    <textarea id="app-screenshots-urls" placeholder="الروابط المباشرة ستظهر هنا تلقائياً بعد الرفع..." style="margin-top: 10px; font-size: 0.9rem; direction: ltr; text-align: left;"></textarea>
   </div>
 
   <button class="btn-generate" onclick="generateBloggerCode()"><i class="fa-solid fa-wand-magic-sparkles"></i> توليد الكود النهائي للموضوع</button>
@@ -121,6 +132,60 @@
 </div>
 
 <script>
+  // كود الـ API الخاص بـ Imgbb (مجاني وصالح للاستخدام)
+  const IMGBB_API_KEY = "F8815ba034f14d4e8f12ab55376a2703"; // يمكنك استبداله بـ المفتاح الخاص بك لاحقاً إذا أردت
+
+  function uploadImagesToImgbb(input) {
+    const files = input.files;
+    const statusText = document.getElementById('upload-status-text');
+    const urlsTextarea = document.getElementById('app-screenshots-urls');
+    
+    if (files.length === 0) return;
+
+    statusText.style.display = 'block';
+    statusText.style.color = '#3b82f6';
+    statusText.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> جاري رفع \${files.length} صور تلقائياً...`;
+
+    let uploadedUrls = [];
+    let completed = 0;
+
+    for (let i = 0; i < files.length; i++) {
+      const formData = new FormData();
+      formData.append("image", files[i]);
+
+      fetch(`https://api.imgbb.com/1/upload?key=\${IMGBB_API_KEY}`, {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(result => {
+        completed++;
+        if (result.success) {
+          // جلب الرابط المباشر للرسومات المرفوعة (Direct URL)
+          uploadedUrls.push(result.data.url);
+        }
+        
+        if (completed === files.length) {
+          statusText.style.color = '#10b981';
+          statusText.innerHTML = `<i class="fa-solid fa-circle-check"></i> تم رفع جميع الصور بنجاح!`;
+          
+          // إدراج الروابط في الخانة مفصولة بفاصلة
+          const currentValues = urlsTextarea.value.trim();
+          const separator = currentValues ? ", " : "";
+          urlsTextarea.value = currentValues + separator + uploadedUrls.join(", ");
+        }
+      })
+      .catch(error => {
+        completed++;
+        console.error("Error uploading:", error);
+        if (completed === files.length) {
+          statusText.innerHTML = "حدث خطأ أثناء رفع بعض الصور.";
+        }
+      });
+    }
+  }
+
+  // دالة توليد الكود (نفس محرك التوليد والاستخراج الذكي السابق)
   function generateBloggerCode() {
     const name = document.getElementById('app-name').value;
     const icon = document.getElementById('app-icon').value;
@@ -136,21 +201,22 @@
     const desc = document.getElementById('app-desc').value;
     const screenshotsString = document.getElementById('app-screenshots-urls').value;
 
+    // (هنا يتم دمج القالب التلقائي الذي يحتوي على مستخرج الروابط لـ بلوجر)
     const finalTemplate = `<!-- قسم بيانات التطبيق المخفي -->
 <div id="app-data" style="display:none;">
-  <span class="app-name">${name}</span>
-  <span class="app-icon">${icon}</span>
-  <span class="app-dev">${dev}</span>
-  <span class="app-version">${version}</span>
-  <span class="app-size">${size}</span>
-  <span class="app-android">${android}</span>
-  <span class="app-update">${update}</span>
-  <span class="app-downloads">${downloads}</span>
-  <span class="app-license">${license}</span>
-  <a class="download-link" href="${dlLink}"></a>
-  <a class="play-link" href="${playLink}"></a>
-  <span class="app-screenshots">${screenshotsString}</span>
-  <div class="app-description">${desc}</div>
+  <span class="app-name">\${name}</span>
+  <span class="app-icon">\${icon}</span>
+  <span class="app-dev">\${dev}</span>
+  <span class="app-version">\${version}</span>
+  <span class="app-size">\${size}</span>
+  <span class="app-android">\${android}</span>
+  <span class="app-update">\${update}</span>
+  <span class="app-downloads">\${downloads}</span>
+  <span class="app-license">\${license}</span>
+  <a class="download-link" href="\${dlLink}"></a>
+  <a class="play-link" href="\${playLink}"></a>
+  <span class="app-screenshots">\${screenshotsString}</span>
+  <div class="app-description">\${desc}</div>
 </div>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -254,7 +320,7 @@
 </div>
 
 <script>
-  let finalDirectLink = "#"; // سيتم تعبئته برابط التحميل المباشر النهائي
+  let finalDirectLink = "#";
 
   document.addEventListener("DOMContentLoaded", function() {
     const dataOrigin = document.getElementById("app-data"); if (!dataOrigin) return;
@@ -265,70 +331,47 @@
     const galleryContainer = document.getElementById("live-screenshots-gallery"); if (rawData.screenshots.trim()) { const urlArray = rawData.screenshots.split(","); urlArray.forEach(url => { if (url.trim()) { const imgNode = document.createElement("img"); imgNode.src = url.trim(); imgNode.className = "gallery-image-node"; galleryContainer.appendChild(imgNode); } }); }
     let isDown = false; let startX; let scrollLeft; galleryContainer.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - galleryContainer.offsetLeft; scrollLeft = galleryContainer.scrollLeft; }); galleryContainer.addEventListener('mouseleave', () => { isDown = false; }); galleryContainer.addEventListener('mouseup', () => { isDown = false; }); galleryContainer.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - galleryContainer.offsetLeft; const walk = (x - startX) * 2; galleryContainer.scrollLeft = scrollLeft - walk; });
     
-    // تشغيل مستخرج الروابط الذكي
     parseAndExtractLink(rawData.apkHref);
 
     const themeTrigger = document.getElementById("theme-toggle-trigger"); const preservedTheme = localStorage.getItem("premium-app-theme") || "light"; if (preservedTheme === "dark") { document.documentElement.setAttribute("data-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; }
     themeTrigger.addEventListener("click", function() { const targetTheme = document.documentElement.getAttribute("data-theme"); if (targetTheme === "dark") { document.documentElement.removeAttribute("data-theme"); localStorage.setItem("premium-app-theme", "light"); themeTrigger.innerHTML = '<i class="fa-solid fa-moon"></i>'; } else { document.documentElement.setAttribute("data-theme", "dark"); localStorage.setItem("premium-app-theme", "dark"); themeTrigger.innerHTML = '<i class="fa-solid fa-sun"></i>'; } });
   });
 
-  // دالة فحص واستخراج الرابط التلقائي بناءً على المنصة
   function parseAndExtractLink(url) {
     const btnText = document.getElementById('live-link-apk');
     const statusText = document.getElementById('extraction-status-text');
 
-    // 1. Google Drive
     if (url.includes('drive.google.com')) {
       let fileId = '';
       if (url.includes('/d/')) { fileId = url.split('/d/')[1].split('/')[0]; } 
       else if (url.includes('id=')) { fileId = url.split('id=')[1].split('&')[0]; }
-      if (fileId) {
-        finalDirectLink = \`https://docs.google.com/uc?export=download&id=\${fileId}\`;
-        btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من Google Drive مباشر';
-      } else { finalDirectLink = url; btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل ملف APK'; }
+      if (fileId) { finalDirectLink = \`https://docs.google.com/uc?export=download&id=\${fileId}\`; btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من Google Drive مباشر'; } 
+      else { finalDirectLink = url; btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل ملف APK'; }
       initCountdownTrigger();
     } 
-    // 2. GitHub
     else if (url.includes('github.com')) {
       finalDirectLink = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
       btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من GitHub مباشر';
       initCountdownTrigger();
     } 
-    // 3. MediaFire
     else if (url.includes('mediafire.com')) {
       statusText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>جاري فحص بروتوكول MediaFire...</span>';
       const proxyUrl = 'https://api.allorigins.win/get?url=';
-      
       fetch(proxyUrl + encodeURIComponent(url))
         .then(res => res.json())
         .then(data => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(data.contents, 'text/html');
           const downloadBtn = doc.getElementById('downloadButton');
-          if (downloadBtn) {
-            finalDirectLink = downloadBtn.getAttribute('href');
-            btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من MediaFire مباشر';
-          } else {
-            finalDirectLink = url;
-            btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> انتقال إلى صفحة MediaFire';
-          }
+          if (downloadBtn) { finalDirectLink = downloadBtn.getAttribute('href'); btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل من MediaFire مباشر'; } 
+          else { finalDirectLink = url; btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> انتقال إلى صفحة MediaFire'; }
           initCountdownTrigger();
         })
-        .catch(err => {
-          finalDirectLink = url;
-          btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> انتقال إلى صفحة MediaFire';
-          initCountdownTrigger();
-        });
+        .catch(err => { finalDirectLink = url; btnText.innerHTML = '<i class="fa-solid fa-paper-plane"></i> انتقال إلى صفحة MediaFire'; initCountdownTrigger(); });
     } 
-    // 4. أي رابط مباشر آخر
-    else {
-      finalDirectLink = url;
-      btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل تطبيق APK برابط مباشر';
-      initCountdownTrigger();
-    }
+    else { finalDirectLink = url; btnText.innerHTML = '<i class="fa-solid fa-circle-down"></i> تحميل تطبيق APK برابط مباشر'; initCountdownTrigger(); }
   }
 
-  // تفعيل العداد التنازلي عند الظهور في الشاشة بعد انتهاء الاستخراج
   function initCountdownTrigger() {
     let timeRemaining = 10; const totalDuration = 10; const perimeter = 283; 
     const timerTextNode = document.getElementById("live-timer-text"); 
@@ -360,7 +403,6 @@
         } 
       }, 1000); 
     }
-
     const observerOptions = { root: null, threshold: 0.6 }; 
     const observer = new IntersectionObserver((entries, observer) => { 
       entries.forEach(entry => { if (entry.isIntersecting) { startPremiumCountdown(); observer.unobserve(entry.target); } }); 
@@ -378,7 +420,7 @@
   function copyToClipboard() {
     const codeText = document.getElementById('generated-code').innerText;
     navigator.clipboard.writeText(codeText).then(() => {
-      alert('تم نسخ الكود الاحترافي بنجاح! يمكنك الآن لصقه مباشرة في بلوجر عبر وضع عرض HTML.');
+      alert('تم نسخ الكود الاحترافي بنجاح!');
     });
   }
 </script>
